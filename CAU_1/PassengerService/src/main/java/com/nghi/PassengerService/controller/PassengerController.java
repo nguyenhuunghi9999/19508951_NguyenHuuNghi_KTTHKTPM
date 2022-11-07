@@ -4,6 +4,7 @@ import com.nghi.PassengerService.entity.Passenger;
 import com.nghi.PassengerService.service.PassengerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,8 @@ public class PassengerController {
     }
 
     @GetMapping("/{id}")
-    public Passenger findPassengerById(@PathVariable("id") Long passenderId) {
-        return passengerService.findPassengerById(passenderId);
+    @Cacheable(value = "passenger", key = "#id")
+    public Passenger findPassengerById(@PathVariable("id") Long passengerId) {
+        return passengerService.findPassengerById(passengerId);
     }
 }

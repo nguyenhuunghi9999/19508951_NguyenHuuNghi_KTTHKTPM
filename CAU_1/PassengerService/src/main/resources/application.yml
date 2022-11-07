@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: PASSENGER-SERVICE
+  cache:
+    type: redis
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
   datasource:
     url: jdbc:mysql://localhost:3306/PassengerDB?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
     username: root
