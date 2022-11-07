@@ -14,3 +14,10 @@ spring:
       ddl-auto: update
     generate-ddl: true
     show-sql: true
+
+resilience4j:
+  retry:
+    instances:
+      PassengerService:
+        maxAttempts: 3
+        waitDuration: 10s
