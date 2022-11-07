@@ -15,10 +15,13 @@ public class PassengerService {
     @Autowired
     private PassengerRepository passengerRepository;
 
-    public Passenger saveDepartment(Passenger passenger) {
+    public Passenger savePassenger(Passenger passenger) {
         return passengerRepository.save(passenger);
     }
 
+    public Passenger findPassengerById(Long passengerId) {
+        return passengerRepository.findByPassengerId(passengerId);
+    }
 
     public List<Passenger> getAllPassenger() {
         return passengerRepository.findAll();

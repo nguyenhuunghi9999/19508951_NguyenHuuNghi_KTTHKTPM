@@ -19,7 +19,7 @@ public class BillingService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public Billing saveUser(Billing bill) {
+    public Billing saveBilling(Billing bill) {
         return billingRepository.save(bill);
     }
 
@@ -28,7 +28,7 @@ public class BillingService {
         Billing bill = billingRepository.findByBillId(billId);
 
         Passenger passenger =
-                restTemplate.getForObject("http://localhost:9001/api/department/" + bill.getPassengerId()
+                restTemplate.getForObject("http://localhost:9005/passenger/" + bill.getPassengerId()
                         ,Passenger.class);
 
         vo.setBilling(bill);

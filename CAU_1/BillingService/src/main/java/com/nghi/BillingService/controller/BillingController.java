@@ -16,12 +16,12 @@ public class BillingController {
     private BillingService billingService;
 
     @PostMapping("/")
-    public Billing saveUser(@RequestBody Billing billing) {
-        return billingService.saveUser(billing);
+    public Billing saveBilling(@RequestBody Billing billing) {
+        return billingService.saveBilling(billing);
     }
 
     @GetMapping("/{id}")
-    public ResponseTemplateVO getUserWithDepartment(@PathVariable("id") Long billId) {
+    public ResponseTemplateVO getBillWithPassenger(@PathVariable("id") Long billId) {
         return billingService.getBillWithPassenger(billId);
     }
 }
