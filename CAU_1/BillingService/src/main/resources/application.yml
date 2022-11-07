@@ -1,0 +1,16 @@
+server:
+  port : 9002
+
+spring:
+  application:
+    name: BILLING-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/BillingDB?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
