@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
+import java.util.Date;
+
 @Service
 @Slf4j
 public class BillingService {
@@ -23,12 +26,16 @@ public class BillingService {
     public Billing saveBilling(Billing bill) {
         return billingRepository.save(bill);
     }
+    public BillingService (RestTemplate restTemplate){
+        this.restTemplate = restTemplate;
+    }
 
+    int count=1;
     @Retry(name = "PassengerService")
     public ResponseTemplateVO getBillWithPassenger(Long billId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Billing bill = billingRepository.findByBillId(billId);
-
+        System.out.println("Retry method called " + count++ + " times at " + new Date());
         Passenger passenger =
                 restTemplate.getForObject("http://localhost:9005/passenger/" + bill.getPassengerId()
                         ,Passenger.class);
